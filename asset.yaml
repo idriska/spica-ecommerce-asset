@@ -1,419 +1,22 @@
-# BUCKET - E-Com Basket
-apiVersion: bucket/v1
-kind: Schema
+# API KEY
+apiVersion: passport/v1
+kind: ApiKey
 metadata:
-  name: e-com-basket-bucket
+  name: ecommerce-asset-apikey
 spec:
-  title: E-Com Basket
-  description: Describe your new bucket
-  icon: add_shopping_cart
-  primary: title
-  readOnly: false
-  history: false
-  properties:
-    title:
-      type: string
-      title: title
-      description: Description of the title input
-      options:
-        position: bottom
-    total_price:
-      type: number
-      title: total_price
-      description: Total price filled in automatically
-      options:
-        position: bottom
-      default: 0
-      readOnly: false
-    is_completed:
-      type: boolean
-      title: is_completed
-      description: Description of the is_completed input
-      options:
-        position: bottom
-      default: false
-  acl:
-    write: true==true
-    read: true==true
-  order: 20
+  name: Secret Api Key For E-Commerce
+  policies:
+    - BucketFullAccess
+    - FunctionFullAccess
+    - IdentityFullAccess
 ---
-# BUCKET - E-Com Product
+# BUCKET - Attribute
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-product-bucket
+  name: spica-ecommerce-asset-attribute-bucket
 spec:
-  title: E-Com Product
-  description: Describe your new bucket
-  icon: add_shopping_cart
-  primary: name
-  readOnly: false
-  history: false
-  properties:
-    name:
-      type: string
-      title: name
-      description: Description of the name input
-      options:
-        position: bottom
-    description:
-      type: richtext
-      title: description
-      description: Description of the description input
-      options:
-        position: bottom
-    tag:
-      type: array
-      title: tag
-      description: Description of the tag input
-      options:
-        position: bottom
-      items:
-        title: Title of the items
-        type: storage
-    cover_image:
-      type: storage
-      title: cover_image
-      description: Description of the cover_image input
-      options:
-        position: bottom
-    gallery:
-      type: array
-      title: gallery
-      description: Description of the gallery input
-      options:
-        position: bottom
-      items:
-        title: Title of the items
-        type: storage
-    type:
-      type: string
-      title: type
-      description: Description of the type input
-      options:
-        position: bottom
-      default: physical
-      enum:
-        - physical
-        - digital
-    normal_price:
-      type: number
-      title: normal_price
-      description: Description of the normal_price input
-      options:
-        position: bottom
-      default: 0
-    discounted_price:
-      type: number
-      title: discounted_price
-      description: Description of the discounted_price input
-      options:
-        position: bottom
-      default: 0
-    discount_start_date:
-      type: date
-      title: discount_start_date
-      description: Description of the discount_start_date input
-      options:
-        position: bottom
-    discount_end_date:
-      type: date
-      title: discount_end_date
-      description: Description of the discount_end_date input
-      options:
-        position: bottom
-    is_free_delivery:
-      type: boolean
-      title: is_free_delivery
-      description: Description of the is_free_delivery input
-      options:
-        position: bottom
-      default: false
-    is_available:
-      type: boolean
-      title: is_available
-      description: Description of the is_available input
-      options:
-        position: bottom
-      default: true
-    created_at:
-      type: date
-      title: created_at
-      description: Description of the created_at input
-      options:
-        position: bottom
-      default: :created_at
-  acl:
-    write: true==true
-    read: true==true
-  order: 21
----
-# BUCKET - E-Com Stock
-apiVersion: bucket/v1
-kind: Schema
-metadata:
-  name: e-com-stock-bucket
-spec:
-  title: E-Com Stock
-  description: Describe your new bucket
-  icon: add_shopping_cart
-  primary: sku
-  readOnly: false
-  history: false
-  properties:
-    sku:
-      type: string
-      title: sku
-      description: Stock Keeping Unit
-      options:
-        position: bottom
-    quantity:
-      type: number
-      title: quantity
-      description: Description of the quantity input
-      options:
-        position: bottom
-      default: 0
-    is_enable:
-      type: boolean
-      title: is_enable
-      description: Description of the is_enable input
-      options:
-        position: bottom
-      default: true
-    sell_if_not_available:
-      type: boolean
-      title: sell_if_not_available
-      description: Description of the sell_if_not_available input
-      options:
-        position: bottom
-      default: false
-  acl:
-    write: true==true
-    read: true==true
-  required: []
-  order: 23
----
-# BUCKET - E-Com Invoice
-apiVersion: bucket/v1
-kind: Schema
-metadata:
-  name: e-com-invoice-bucket
-spec:
-  title: E-Com Invoice
-  description: Describe your new bucket
-  icon: add_shopping_cart
-  primary: name
-  readOnly: false
-  history: false
-  properties:
-    name:
-      type: string
-      title: name
-      description: Customer name
-      options:
-        position: bottom
-    surname:
-      type: string
-      title: surname
-      description: Customer surname
-      options:
-        position: bottom
-    address:
-      type: object
-      title: address
-      description: Description of the address input
-      options:
-        position: bottom
-      properties:
-        country:
-          type: string
-          title: country
-          description: Description of the country input
-          options:
-            position: bottom
-        district:
-          type: string
-          title: district
-          description: Description of the district input
-          options:
-            position: bottom
-        full_address:
-          type: string
-          title: full_address
-          description: Description of the full_address input
-          options:
-            position: bottom
-        post_code:
-          type: number
-          title: post_code
-          description: Description of the post_code input
-          options:
-            position: bottom
-        province:
-          type: string
-          title: province
-          description: Description of the province input
-          options:
-            position: bottom
-        title:
-          type: string
-          title: title
-          description: Description of the title input
-          options:
-            position: bottom
-    company_name:
-      type: string
-      title: company_name
-      description: Description of the company_name input
-      options:
-        position: bottom
-    phone:
-      type: string
-      title: phone
-      description: Description of the phone input
-      options:
-        position: bottom
-    email:
-      type: string
-      title: email
-      description: Description of the email input
-      options:
-        position: bottom
-  acl:
-    write: true==true
-    read: true==true
-  order: 24
-  required:
-    - name
-    - surname
-    - phone
-    - email
----
-# BUCKET - E-Com Order
-apiVersion: bucket/v1
-kind: Schema
-metadata:
-  name: e-com-order-bucket
-spec:
-  title: E-Com Order
-  description: Describe your new bucket
-  icon: add_shopping_cart
-  primary: title
-  readOnly: false
-  history: false
-  properties:
-    title:
-      type: string
-      title: title
-      description: Title of the row
-      options:
-        position: left
-    status:
-      type: string
-      title: status
-      description: Description of the status input
-      options:
-        position: bottom
-      enum:
-        - cancelled
-        - delivering
-        - delivered
-        - preparing
-        - pending
-      default: pending
-    created_at:
-      type: date
-      title: created_at
-      description: Description of the created_at input
-      options:
-        position: bottom
-      default: :created_at
-    note:
-      type: textarea
-      title: note
-      description: Description of the note input
-      options:
-        position: bottom
-  acl:
-    write: true==true
-    read: true==true
-  order: 25
----
-# BUCKET - E-Com Rating
-apiVersion: bucket/v1
-kind: Schema
-metadata:
-  name: e-com-rating-bucket
-spec:
-  title: E-Com Rating
-  description: Describe your new bucket
-  icon: add_shopping_cart
-  primary: comment
-  readOnly: false
-  history: false
-  properties:
-    comment:
-      type: textarea
-      title: comment
-      description: Description of the comment input
-      options:
-        position: bottom
-    rating:
-      type: number
-      title: rating
-      description: Rating from 1 to 5
-      options:
-        position: bottom
-      enum:
-        - 1
-        - 2
-        - 3
-        - 4
-        - 5
-  acl:
-    write: true==true
-    read: true==true
-  order: 26
----
-# BUCKET - E-Com Used Coupon 
-apiVersion: bucket/v1
-kind: Schema
-metadata:
-  name: e-com-used-coupon-bucket
-spec:
-  title: "E-Com Used Coupon "
-  description: Describe your new bucket
-  icon: add_shopping_cart
-  primary: title
-  readOnly: false
-  history: false
-  properties:
-    title:
-      type: string
-      title: title
-      description: Description of the title input
-      options:
-        position: bottom
-    date:
-      type: date
-      title: date
-      description: Description of the date input
-      options:
-        position: bottom
-      default: :created_at
-  acl:
-    write: true==true
-    read: true==true
-  order: 28
----
-# BUCKET - E-Com Attribute
-apiVersion: bucket/v1
-kind: Schema
-metadata:
-  name: e-com-attribute-bucket
-spec:
-  title: E-Com Attribute
+  title: Attribute
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: name
@@ -436,17 +39,19 @@ spec:
         title: Title of the items
         type: string
   acl:
-    write: true==true
+    write: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
     read: true==true
   order: 16
 ---
-# BUCKET - E-Com Product Category
+# BUCKET - Category
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-product-category-bucket
+  name: spica-ecommerce-asset-category-bucket
 spec:
-  title: E-Com Product Category
+  title: Category
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: name
@@ -459,20 +64,46 @@ spec:
       description: Description of the name input
       options:
         position: bottom
+    img:
+      type: storage
+      title: img
+      description: Description of the img input
+      options:
+        position: bottom
+    sub_categories:
+      type: relation
+      title: sub_categories
+      description: Description of the sub_categories input
+      options:
+        position: bottom
+      relationType: onetomany
+      dependent: false
+      bucket:
+        resourceFieldRef:
+          schemaName: spica-ecommerce-asset-category-bucket
+    is_sub_category:
+      type: boolean
+      title: is_sub_category
+      description: Description of the is_sub_category input
+      options:
+        position: bottom
+      default: false
   acl:
-    write: true==true
+    write: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
     read: true==true
   required:
     - name
   order: 17
 ---
-# BUCKET - E-Com Payment Method
+# BUCKET - Payment Method
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-payment-method-bucket
+  name: spica-ecommerce-asset-payment-method-bucket
 spec:
-  title: E-Com Payment Method
+  title: Payment Method
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: title
@@ -499,17 +130,19 @@ spec:
         position: bottom
       default: true
   acl:
-    write: true==true
+    write: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
     read: true==true
   order: 18
 ---
-# BUCKET - E-Com Store Settings
+# BUCKET - Store Settings
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-store-settings-bucket
+  name: spica-ecommerce-asset-store-settings-bucket
 spec:
-  title: E-Com Store Settings
+  title: Store Settings
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: name
@@ -618,17 +251,19 @@ spec:
       options:
         position: bottom
   acl:
-    write: true==true
+    write: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
     read: true==true
   order: 19
 ---
-# BUCKET - E-Com Coupon
+# BUCKET - Coupon
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-coupon-bucket
+  name: spica-ecommerce-asset-coupon-bucket
 spec:
-  title: E-Com Coupon
+  title: Coupon
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: code
@@ -671,17 +306,21 @@ spec:
       options:
         position: bottom
   acl:
-    write: true==true
-    read: true==true
+    write: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
+    read: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
   order: 20
 ---
-# BUCKET - E-Com Basket
+# BUCKET - Basket
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-basket-bucket
+  name: spica-ecommerce-asset-basket-bucket
 spec:
-  title: E-Com Basket
+  title: Basket
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: title
@@ -694,17 +333,47 @@ spec:
       description: Description of the title input
       options:
         position: bottom
-    product:
+    products:
       type: relation
-      title: product
-      description: Description of the product input
+      title: products
+      description: Description of the products input
       options:
         position: bottom
       relationType: onetomany
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-product-bucket
+          schemaName: spica-ecommerce-asset-product-bucket
+    metadata:
+      type: array
+      title: metadata
+      description: Description of the metadata input
+      options:
+        position: bottom
+      items:
+        title: Title of the items
+        type: object
+        properties:
+          quantity:
+            type: number
+            title: quantity
+            description: Description of the quantity input
+            options:
+              position: bottom
+            default: 1
+            minimum: 0
+          product_id:
+            type: string
+            title: product_id
+            description: Description of the product_id input
+            options:
+              position: bottom
+          selected_attribute:
+            type: string
+            title: selected_attribute
+            description: Description of the selected_attribute input
+            options:
+              position: bottom
     coupon:
       type: relation
       title: coupon
@@ -715,7 +384,7 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-coupon-bucket
+          schemaName: spica-ecommerce-asset-coupon-bucket
     user:
       type: relation
       title: user
@@ -726,7 +395,7 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-user-bucket
+          schemaName: spica-ecommerce-asset-user-bucket
     total_price:
       type: number
       title: total_price
@@ -743,27 +412,39 @@ spec:
         position: bottom
       default: false
   acl:
-    write: true==true
-    read: true==true
+    write: |-
+      auth._id == document.user.identity_id ||
+      auth.attributes.role == "admin" ||
+      auth.key == "5ks9718kiybw51i"
+    read: |-
+      auth._id == document.user.identity_id ||
+      auth.attributes.role == "admin" ||
+      auth.key == "5ks9718kiybw51i"
   order: 20
 ---
-# BUCKET - E-Com Product
+# BUCKET - Product
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-product-bucket
+  name: spica-ecommerce-asset-product-bucket
 spec:
-  title: E-Com Product
+  title: Product
   description: Describe your new bucket
   icon: add_shopping_cart
-  primary: name
+  primary: title
   readOnly: false
   history: false
   properties:
-    name:
+    title:
       type: string
-      title: name
-      description: Description of the name input
+      title: title
+      description: Description of the title input
+      options:
+        position: bottom
+    sub_title:
+      type: string
+      title: sub_title
+      description: Description of the sub_title input
       options:
         position: bottom
     description:
@@ -772,28 +453,30 @@ spec:
       description: Description of the description input
       options:
         position: bottom
-    category:
+    categories:
       type: relation
-      title: category
-      description: Description of the category input
+      title: categories
+      description: Description of the categories input
       options:
         position: bottom
       relationType: onetomany
       dependent: false
+      primary: name
       bucket:
         resourceFieldRef:
-          schemaName: e-com-product-category-bucket
-    attribute:
+          schemaName: spica-ecommerce-asset-category-bucket
+    attributes:
       type: relation
-      title: attribute
-      description: Description of the attribute input
+      title: attributes
+      description: Description of the attributes input
       options:
         position: bottom
       relationType: onetomany
       dependent: false
+      primary: name
       bucket:
         resourceFieldRef:
-          schemaName: e-com-attribute-bucket
+          schemaName: spica-ecommerce-asset-attribute-bucket
     tag:
       type: array
       title: tag
@@ -876,17 +559,19 @@ spec:
         position: bottom
       default: :created_at
   acl:
-    write: true==true
+    write: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
     read: true==true
   order: 21
 ---
-# BUCKET - E-Com Stock
+# BUCKET - Stock
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-stock-bucket
+  name: spica-ecommerce-asset-stock-bucket
 spec:
-  title: E-Com Stock
+  title: Stock
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: sku
@@ -930,20 +615,22 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-product-bucket
+          schemaName: spica-ecommerce-asset-product-bucket
   acl:
-    write: true==true
+    write: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
     read: true==true
   required: []
   order: 23
 ---
-# BUCKET - E-Com Invoice
+# BUCKET - Invoice
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-invoice-bucket
+  name: spica-ecommerce-asset-invoice-bucket
 spec:
-  title: E-Com Invoice
+  title: Invoice
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: name
@@ -1033,7 +720,7 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-basket-bucket
+          schemaName: spica-ecommerce-asset-basket-bucket
     payment_method:
       type: relation
       title: payment_method
@@ -1044,10 +731,15 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-payment-method-bucket
+          schemaName: spica-ecommerce-asset-payment-method-bucket
   acl:
-    write: true==true
-    read: true==true
+    write: |-
+      has(auth._id) ||
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
+    read: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
   order: 24
   required:
     - name
@@ -1055,13 +747,13 @@ spec:
     - phone
     - email
 ---
-# BUCKET - E-Com Order
+# BUCKET - Order
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-order-bucket
+  name: spica-ecommerce-asset-order-bucket
 spec:
-  title: E-Com Order
+  title: Order
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: title
@@ -1104,7 +796,7 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-basket-bucket
+          schemaName: spica-ecommerce-asset-basket-bucket
     invoice:
       type: relation
       title: invoice
@@ -1115,7 +807,7 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-invoice-bucket
+          schemaName: spica-ecommerce-asset-invoice-bucket
     note:
       type: textarea
       title: note
@@ -1123,17 +815,23 @@ spec:
       options:
         position: bottom
   acl:
-    write: true==true
-    read: true==true
+    write: |-
+      auth._id == document.invoice.basket.user.identity_id ||
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
+    read: |-
+      auth._id == document.invoice.basket.user.identity_id ||
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
   order: 25
 ---
-# BUCKET - E-Com Rating
+# BUCKET - Rating
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-rating-bucket
+  name: spica-ecommerce-asset-rating-bucket
 spec:
-  title: E-Com Rating
+  title: Rating
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: comment
@@ -1168,19 +866,19 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-user-bucket
+          schemaName: spica-ecommerce-asset-user-bucket
   acl:
     write: true==true
     read: true==true
   order: 26
 ---
-# BUCKET - E-Com User
+# BUCKET - User
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-user-bucket
+  name: spica-ecommerce-asset-user-bucket
 spec:
-  title: E-Com User
+  title: User
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: name
@@ -1191,6 +889,12 @@ spec:
       type: string
       title: identity_id
       description: Description of the identity_id input
+      options:
+        position: bottom
+    email:
+      type: string
+      title: email
+      description: Description of the email input
       options:
         position: bottom
     name:
@@ -1257,18 +961,30 @@ spec:
             description: Description of the post_code input
             options:
               position: bottom
+          phone:
+            type: string
+            title: phone
+            description: Description of the phone input
+            options:
+              position: bottom
   acl:
-    write: true==true
-    read: true==true
+    write: |-
+      auth._id == document.identity_id ||
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
+    read: |-
+      auth._id == document.identity_id ||
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
   order: 27
 ---
-# BUCKET - E-Com Used Coupon 
+# BUCKET - Used Coupon 
 apiVersion: bucket/v1
 kind: Schema
 metadata:
-  name: e-com-used-coupon-bucket
+  name: spica-ecommerce-asset-used-coupon-bucket
 spec:
-  title: "E-Com Used Coupon "
+  title: "Used Coupon "
   description: Describe your new bucket
   icon: add_shopping_cart
   primary: title
@@ -1291,7 +1007,7 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-coupon-bucket
+          schemaName: spica-ecommerce-asset-coupon-bucket
     user:
       type: relation
       title: user
@@ -1302,7 +1018,7 @@ spec:
       dependent: false
       bucket:
         resourceFieldRef:
-          schemaName: e-com-user-bucket
+          schemaName: spica-ecommerce-asset-user-bucket
     date:
       type: date
       title: date
@@ -1311,34 +1027,191 @@ spec:
         position: bottom
       default: :created_at
   acl:
-    write: true==true
-    read: true==true
+    write: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
+    read: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
   order: 28
 ---
-# FUNCTION - E-Commerce
+# BUCKET - Liked Product
+apiVersion: bucket/v1
+kind: Schema
+metadata:
+  name: spica-ecommerce-asset-liked-product-bucket
+spec:
+  title: Liked Product
+  description: Describe your new bucket
+  icon: add_shopping_cart
+  primary: title
+  readOnly: false
+  history: false
+  properties:
+    products:
+      type: relation
+      title: products
+      description: Description of the products input
+      options:
+        position: bottom
+      relationType: onetomany
+      dependent: false
+      primary: title
+      bucket:
+        resourceFieldRef:
+          schemaName: spica-ecommerce-asset-product-bucket
+    user:
+      type: relation
+      title: user
+      description: Description of the user input
+      options:
+        position: bottom
+      relationType: onetoone
+      dependent: false
+      primary: name
+      bucket:
+        resourceFieldRef:
+          schemaName: spica-ecommerce-asset-user-bucket
+    created_at:
+      type: date
+      title: created_at
+      description: Description of the created_at input
+      options:
+        position: bottom
+      default: :created_at
+    title:
+      type: string
+      title: title
+      description: Description of the title input
+      options:
+        position: bottom
+      default: Liked
+  acl:
+    write: |-
+      auth._id == document.user.identity_id ||
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
+    read: |-
+      auth._id == document.user.identity_id ||
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
+  order: 51
+---
+# BUCKET - Campaign Product
+apiVersion: bucket/v1
+kind: Schema
+metadata:
+  name: spica-ecommerce-asset-campaign-product-bucket
+spec:
+  title: Campaign Product
+  description: Describe your new bucket
+  icon: add_shopping_cart
+  primary: title
+  readOnly: false
+  history: false
+  properties:
+    title:
+      type: string
+      title: title
+      description: Title of the row
+      options:
+        position: left
+    img:
+      type: storage
+      title: img
+      description: Description of the img input
+      options:
+        position: bottom
+    products:
+      type: relation
+      title: products
+      description: Description of the products input
+      options:
+        position: bottom
+      relationType: onetomany
+      dependent: false
+      bucket:
+        resourceFieldRef:
+          schemaName: spica-ecommerce-asset-product-bucket
+  acl:
+    write: |-
+      auth.attributes.role == "admin" ||
+      auth.key == "e5wl18kmw287kr"
+    read: true==true
+  order: 51
+---
+# FUNCTION - Functions
 apiVersion: function/v1
 kind: Function
 metadata:
-  name: e-commerce-function
+  name: spica-ecommerce-asset-functions-function
 spec:
   language: javascript
   timeout: 60
   environment:
     - name: ECOMMERCE_APIKEY
-      value: 5ks9718kiybw51i
+      valueFrom:
+        resourceFieldRef:
+          apiKeyName: ecommerce-asset-apikey
     - name: PRODUCT_BUCKET
-      value: 61653de91a1b5d002d81422f
+      valueFrom:
+        resourceFieldRef:
+          apiKeyName: spica-ecommerce-asset-product-bucket
     - name: STOCK_BUCKET
-      value: 616543021a1b5d002d8142d4
+      valueFrom:
+        resourceFieldRef:
+          apiKeyName: spica-ecommerce-asset-stock-bucket
     - name: BASKET_BUCKET
-      value: 6165462a1a1b5d002d814324
+      valueFrom:
+        resourceFieldRef:
+          apiKeyName: spica-ecommerce-asset-basket-bucket
     - name: USED_COUPON_BUCKET
-      value: 616562351a1b5d002d814565
+      valueFrom:
+        resourceFieldRef:
+          apiKeyName: spica-ecommerce-asset-used-coupon-bucket
+    - name: COUPON_BUCKET
+      valueFrom:
+        resourceFieldRef:
+          apiKeyName: spica-ecommerce-asset-coupon-bucket
   dependency:
     - name: "@spica-devkit/bucket"
-      version: ^0.9.11
-  title: E-Commerce
-  code: ./function/e-commerce-function.js
+      version: latest
+    - name: "@spica-devkit/identity"
+      version: latest
+  title: Functions
+  description: "E-commerce functions"
+  code: ./function/spica-ecommerce-asset-functions-function.js
+  runtime:
+    name: Node
+    language: Javascript
+---
+# FUNCTION - Auth
+apiVersion: function/v1
+kind: Function
+metadata:
+  name: spica-ecommerce-asset-auth-function
+spec:
+  language: javascript
+  timeout: 60
+  environment:
+    - name: SECRET_API_KEY
+      valueFrom:
+        resourceFieldRef:
+          apiKeyName: ecommerce-asset-apikey
+    - name: USER_BUCKET
+      valueFrom:
+        resourceFieldRef:
+          apiKeyName: spica-ecommerce-asset-user-bucket
+  dependency:
+    - name: "@spica-devkit/bucket"
+      version: latest
+    - name: "@spica-devkit/database"
+      version: latest
+    - name: "@spica-devkit/identity"
+      version: latest
+  title: Auth
+  description: "E-commerce auth operations"
+  code: ./function/spica-ecommerce-asset-auth-function.js
   runtime:
     name: Node
     language: Javascript
@@ -1352,11 +1225,11 @@ spec:
   type: bucket
   active: true
   name: orderInserted
-  func: e-commerce-function
+  func: spica-ecommerce-asset-functions-function
   bucketOptions:
     bucket:
       resourceFieldRef:
-        schemaName: e-com-order-bucket
+        schemaName: spica-ecommerce-asset-order-bucket
     type: INSERT
 ---
 # TRIGGER - updateBasketPrice
@@ -1368,9 +1241,37 @@ spec:
   type: bucket
   active: true
   name: updateBasketPrice
-  func: e-commerce-function
+  func: spica-ecommerce-asset-functions-function
   bucketOptions:
     bucket:
       resourceFieldRef:
-        schemaName: e-com-basket-bucket
+        schemaName: spica-ecommerce-asset-basket-bucket
     type: UPDATE
+---
+# TRIGGER - validateCoupone
+apiVersion: function/v1
+kind: Trigger
+metadata:
+  name: validateCoupone
+spec:
+  type: http
+  active: true
+  name: validateCoupone
+  func: spica-ecommerce-asset-functions-function
+  httpOptions:
+    method: Post
+    path: /validateCoupone
+---
+# TRIGGER - register
+apiVersion: function/v1
+kind: Trigger
+metadata:
+  name: register
+spec:
+  type: http
+  active: true
+  name: register
+  func: spica-ecommerce-asset-auth-function
+  httpOptions:
+    method: Post
+    path: /register
