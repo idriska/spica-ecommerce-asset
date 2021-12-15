@@ -915,6 +915,12 @@ spec:
       description: Description of the phone input
       options:
         position: bottom
+    picture:
+      type: storage
+      title: picture
+      description: Description of the picture input
+      options:
+        position: bottom
     address:
       type: array
       title: address
